@@ -12,7 +12,7 @@ VALUES
 ('Cannabis Sativa', 'Sativa de haute qualité, connue pour ses effets énergisants', 'Cannabis', 30.00, 100),
 ('Cannabis Indica', 'Indica premium, idéale pour la relaxation et le soulagement de la douleur', 'Cannabis', 35.00, 50),
 ('MDMA', 'MDMA pure sous forme cristalline, testée pour une haute pureté', 'Stimulants', 70.00, 25),
-('Cocaïne', 'Cocaïne de qualité supérieure, provenant d\'Amérique du Sud', 'Stimulants', 150.00, 20),
+('Cocaïne', 'Cocaïne de qualité supérieure, provenant d Amérique du Sud', 'Stimulants', 150.00, 20),
 ('LSD', 'Pastilles de 100 mcg de LSD pur, connues pour des effets psychédéliques intenses', 'Psychédéliques', 50.00, 200),
 ('Héroïne', 'Héroïne noire, puissante et de haute qualité', 'Opioïdes', 120.00, 15),
 ('Méthamphétamine', 'Méthamphétamine en cristaux, connue pour ses effets stimulants intenses', 'Stimulants', 90.00, 30),
