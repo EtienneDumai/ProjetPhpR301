@@ -21,4 +21,4 @@ VALUES
 ('Xanax', 'Xanax (alprazolam) de qualité pharmaceutique, populaire pour ses effets calmants', 'Benzodiazépines', 10.00, 500);
 ALTER TABLE Produits
 ADD COLUMN chemin_img VARCHAR(150);
-UPDATE produits SET chemin_img = CONCAT('../img/', REPLACE(nom, ' ', ''), '.jpg');
+UPDATE produits SET chemin_img = CONCAT('/img/', REPLACE(nom, ' ', ''), '.jpg');
