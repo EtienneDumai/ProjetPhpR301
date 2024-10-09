@@ -5,10 +5,10 @@ CREATE TABLE Produits (
     categorie VARCHAR(50),  
     prix DECIMAL(10, 2) NOT NULL,
     quantite INT NOT NULL,
-    chemin_img VARCHAR(150),
+    chemin_image VARCHAR(255),
     date_Creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-INSERT INTO Produits (nom, description, categorie, prix, quantite)
+INSERT INTO Produits (nom, description, categorie, prix, quantite, chemin_image)
 VALUES 
 ('Cannabis Sativa', 'Sativa de haute qualité, connue pour ses effets énergisants', 'Cannabis', 30.00, 100, 'img/cannabissativa.jpg'),
 ('Cannabis Indica', 'Indica premium, idéale pour la relaxation et le soulagement de la douleur', 'Cannabis', 35.00, 50, 'img/cannabisindica.jpg'),
