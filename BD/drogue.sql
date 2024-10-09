@@ -15,7 +15,7 @@ VALUES
 ('MDMA', 'MDMA pure sous forme cristalline, testée pour une haute pureté', 'Stimulants', 70.00, 25, 'img/mdma.jpg'),
 ('Cocaïne', "Cocaïne de qualité supérieure, provenant d'Amérique du Sud", 'Stimulants', 150.00, 20, 'img/cocaine.jpg'),
 ('LSD', 'Pastilles de 100 mcg de LSD pur, connues pour des effets psychédéliques intenses', 'Psychédéliques', 50.00, 200, 'img/lsd.jpg'),
-('Héroïne', 'Héroïne noire, puissante et de haute qualité', 'Opioïdes', 120.00, 15),
+('Héroïne', 'Héroïne noire, puissante et de haute qualité', 'Opioïdes', 120.00, 15, 'img/heroine.jpg'),
 ('Méthamphétamine', 'Méthamphétamine en cristaux, connue pour ses effets stimulants intenses', 'Stimulants', 90.00, 30, 'img/meth.jpg'),
 ('Champignons Magiques', 'Champignons psilocybine séchés, prêts à être consommés', 'Psychédéliques', 45.00, 75, 'img/champi.jpg'),
 ('Kétamine', 'Kétamine de qualité médicale, utilisée à des fins récréatives pour ses effets dissociatifs', 'Dissociatifs', 85.00, 40, 'img/ketamine.jpg'),
