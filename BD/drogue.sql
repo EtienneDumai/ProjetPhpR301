@@ -19,3 +19,6 @@ VALUES
 ('Champignons Magiques', 'Champignons psilocybine séchés, prêts à être consommés', 'Psychédéliques', 45.00, 75),
 ('Kétamine', 'Kétamine de qualité médicale, utilisée à des fins récréatives pour ses effets dissociatifs', 'Dissociatifs', 85.00, 40),
 ('Xanax', 'Xanax (alprazolam) de qualité pharmaceutique, populaire pour ses effets calmants', 'Benzodiazépines', 10.00, 500);
+ALTER TABLE Produits
+ADD COLUMN chemin_img VARCHAR(150);
+UPDATE produits SET chemin_img = CONCAT('../img/', REPLACE(nom, ' ', ''), '.jpg');
