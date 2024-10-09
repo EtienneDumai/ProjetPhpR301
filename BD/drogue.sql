@@ -8,6 +8,7 @@ CREATE TABLE Produits (
     chemin_image VARCHAR(255),
     date_Creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 INSERT INTO Produits (nom, description, categorie, prix, quantite, chemin_image)
 VALUES 
 ('Cannabis Sativa', 'Sativa de haute qualité, connue pour ses effets énergisants', 'Cannabis', 30.00, 100, 'img/cannabissativa.jpg'),
