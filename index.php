@@ -1,7 +1,7 @@
 <?php 
 include 'BD/connexion.php';
 
-$sql = "SELECT p_id, nom, prix, chemin_img FROM produits";
+$sql = "SELECT p_id, nom, prix, chemin_image FROM produits";
 $resultat = $conn->query($sql);
 var_dump($resultat)
 ?>
@@ -18,7 +18,7 @@ var_dump($resultat)
             <?php while($drogue = $resultat->fetch_assoc()): ?>
                 <div class="card">
                     <!-- Image de la drogue -->
-                    <img src="<?php echo htmlspecialchars("/img/".$drogue['nom'].".jpg"); ?>" alt="<?php echo htmlspecialchars($drogue['nom']); ?>">
+                    <img src="<?php echo $drogue['chemin_image']; ?>" alt="<?php echo htmlspecialchars($drogue['nom']); ?>">
                     
                     <!-- Corps de la carte avec nom et prix -->
                     <div class="card-body">
