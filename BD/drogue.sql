@@ -7,7 +7,7 @@ CREATE TABLE Produits (
     Quantite INT NOT NULL,
     Date_Creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-INSERT INTO Products (nom, description, categorie, prix, Quantite)
+INSERT INTO Produits (nom, description, categorie, prix, Quantite)
 VALUES 
 ('Cannabis Sativa', 'Sativa de haute qualité, connue pour ses effets énergisants', 'Cannabis', 30.00, 100),
 ('Cannabis Indica', 'Indica premium, idéale pour la relaxation et le soulagement de la douleur', 'Cannabis', 35.00, 50),
