@@ -3,6 +3,15 @@ include 'BD/connexion.php';
 include 'vignette.php';
 $sql = "SELECT p_id, nom, prix, chemin_image FROM produits";
 $resultat = $conn->query($sql);
+session_start(); // Démarre la session pour pouvoir vérifier la variable de session
+
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
+    // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
+    header('Location: login.php');
+    exit; // Stoppe l'exécution du script pour s'assurer que la redirection se fait bien
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -34,17 +43,19 @@ $resultat = $conn->query($sql);
                 </li>
             </ul>
 
-            <!-- Champ de recherche -->
-            <form class="d-flex me-3">
-                <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Rechercher</button>
-            </form>
-
             <!-- Bouton du panier -->
             <a href="#" class="btn btn-primary">
                 <i class="bi bi-cart-fill"></i> Panier
             </a>
+
+            <a href="logout.php" class="btn btn-danger ms-2">
+                <i class="bi bi-cart-fill"></i> Déconnexion
+            </a>
+            
+
         </div>
+        
+
     </div>
 </nav>
 
