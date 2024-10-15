@@ -11,6 +11,11 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
     header('Location: login.php');
     exit; // Stoppe l'exécution du script pour s'assurer que la redirection se fait bien
 }
+if (!isset($_SESSION['panier'])) {
+    $_SESSION['panier'] = array();
+}
+
+
 
 ?>
 
@@ -47,7 +52,7 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
             <a href="#" class="btn btn-primary">
                 <i class="bi bi-cart-fill"></i> Panier
             </a>
-
+            <!-- Bouton de déconnexion -->
             <a href="logout.php" class="btn btn-danger ms-2">
                 <i class="bi bi-cart-fill"></i> Déconnexion
             </a>
@@ -59,11 +64,12 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
     </div>
 </nav>
 
-
+<from method = "POST">
 <div class="container py-5">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center align-items-center" style="min-height: 100vh;">
         <?php while($drogue = $resultat->fetch_assoc()): ?>
             <?php 
+            $cpt=0;
             $maxLarg = 300;
             $maxLong = 300;
             $src = $drogue['chemin_image'];
@@ -72,9 +78,11 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
             if (!file_exists($dest)) {
                 createVignette($src, $dest, $maxLarg, $maxLong);
             }
+            
+            
             ?>
             <div class="col d-flex justify-content-center align-items-center">
-                <div class="card h-100 shadow-sm">
+                <div class="card h-100 shadow-sm" name = "<?php echo htmlspecialchars($cpt);?>">
                     <!-- Image du produit -->
                     <img src="<?php echo $dest; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($drogue['nom']); ?>">
                     
@@ -85,17 +93,48 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
                             <strong>Prix:</strong> <?php echo htmlspecialchars($drogue['prix']); ?> €
                         </p>
                     </div>
-
                     <!-- Footer de la carte avec un bouton -->
                     <div class="card-footer bg-transparent border-0 text-center">
-                        <a href="#" class="btn btn-primary w-100">Ajouter au panier</a>
+                        <input type="submit" href="#" class="btn btn-primary w-100" name = "<?php echo htmlspecialchars($drogue['nom']);?>" value ="Ajouter au panier">
                     </div>
                 </div>
             </div>
+            <?php $cpt++;?>
         <?php endwhile; ?>
     </div>
 </div>
+</from>
+<?php
+// Ajoute un element au panier si le bouton de la carte du produit à été cliqué
+while ($drogue = $resultat->fetch_assoc()) {
+    $button_name = $drogue['nom'];
+    var_dump($button_name);
+    // Vérifie si le bouton correspondant à ce produit a été cliqué
+    if (isset($_POST[$button_name])) {
+        // Ajoute le produit au panier
+        $produit_existe = false;
 
+        foreach ($_SESSION['panier'] as &$produit) {
+            if ($produit['nom'] === $drogue['nom']) {
+                // Si le produit existe déjà dans le panier, on incrémente la quantité
+                $produit['quantite'] += 1;
+                $produit_existe = true;
+                break;
+            }
+        }
+
+        if (!$produit_existe) {
+            // Si le produit n'existe pas dans le panier, on l'ajoute
+            $_SESSION['panier'][] = array(
+                'nom' => $drogue['nom'],
+                'prix' => $drogue['prix'],
+                'quantite' => 1 // Initialisation de la quantité à 1
+            );
+        }
+        
+    }
+}
+?>
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
