@@ -30,7 +30,6 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
         <!-- Logo ou titre -->
         <a class="navbar-brand" href="#">Stup.net</a>
 
-        <!-- Bouton pour mobile -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -77,8 +76,9 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
                 createVignette($src, $dest, $maxLarg, $maxLong);
             }
             ?>
+            
             <div class="col d-flex justify-content-center align-items-center">
-                <div class="card h-100 shadow-sm">
+                <div class="card h-100 shadow-sm position-relative" style="cursor: pointer;" onclick="window.location.href='detail.php?id=<?php echo $drogue['p_id']; ?>'">
                     <!-- Image du produit -->
                     <img src="<?php echo $dest; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($drogue['nom']); ?>">
                     
@@ -92,13 +92,15 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
 
                     <!-- Footer de la carte avec un bouton -->
                     <div class="card-footer bg-transparent border-0 text-center">
-                        <a href="#" class="btn btn-primary w-100">Ajouter au panier</a>
+                        <a href="#" class="btn btn-primary w-100" onclick="event.stopPropagation();">Ajouter au panier</a>
                     </div>
                 </div>
             </div>
         <?php endwhile; ?>
     </div>
 </div>
+
+
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
