@@ -1,13 +1,18 @@
 <?php
 include 'connexion.php';
 
-function ajout($id,$nom,$description,$categorie,$quantite,$chemin_image, $conn)
+function ajout($nom, $description, $categorie, $prix, $quantite, $chemin_image, $conn)
 {
     $sql = "INSERT INTO Produits (nom, description, categorie, prix, quantite, chemin_image)
-VALUES ($id,$nom,$description,$categorie,$quantite,$chemin_image)";
-
-    $resultat = $conn -> query($sql);
+            VALUES ('$nom', '$description', '$categorie', $prix, $quantite, '$chemin_image')";
+    
+    $resultat = $conn->query($sql);
+    
+    if (!$resultat) {
+        die('Erreur dans la requête SQL : ' . $conn->error);
+    }
 }
+
 
 function suppression($id, $conn)
 {

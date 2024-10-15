@@ -109,7 +109,13 @@ if (isset($_GET['delete']) && $_GET['delete'] == 'success'): ?>
             <?php endwhile; ?>
     </div>
     </div>
-                
+    <footer class =" bg-light"> 
+    <div class="container py-5">
+    <!-- Bouton pour ajouter un produit -->
+    <div class="text-center mb-4">
+        <a href="ajout.php" class="btn btn-primary">Ajouter un produit</a>
+    </div>
+    </footer>      
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
