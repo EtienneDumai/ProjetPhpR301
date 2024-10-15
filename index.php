@@ -64,7 +64,7 @@ if (!isset($_SESSION['panier'])) {
     </div>
 </nav>
 
-<from method = "POST">
+<form method = "POST">
 <div class="container py-5">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center align-items-center" style="min-height: 100vh;">
         <?php while($drogue = $resultat->fetch_assoc()): ?>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['panier'])) {
                     </div>
                     <!-- Footer de la carte avec un bouton -->
                     <div class="card-footer bg-transparent border-0 text-center">
-                        <input type="submit" href="#" class="btn btn-primary w-100" name = "<?php echo htmlspecialchars($drogue['nom']);?>" value ="Ajouter au panier">
+                        <input type="submit" href="#" class="btn btn-primary w-100" name = "ajouterAuPanier" value ="Ajouter au panier">
                     </div>
                 </div>
             </div>
@@ -103,12 +103,12 @@ if (!isset($_SESSION['panier'])) {
         <?php endwhile; ?>
     </div>
 </div>
-</from>
+</form>
 <?php
 // Ajoute un element au panier si le bouton de la carte du produit à été cliqué
 while ($drogue = $resultat->fetch_assoc()) {
-    $button_name = $drogue['nom'];
-    var_dump($button_name);
+    $button_name = htmlspecialchars($drogue['nom']);
+
     // Vérifie si le bouton correspondant à ce produit a été cliqué
     if (isset($_POST[$button_name])) {
         // Ajoute le produit au panier
@@ -133,6 +133,7 @@ while ($drogue = $resultat->fetch_assoc()) {
         }
         
     }
+
 }
 ?>
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
