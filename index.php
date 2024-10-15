@@ -15,7 +15,7 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,13 +39,17 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Produits</a>
+                    <a class="nav-link" href="index.php">Produits</a>
                 </li>
             </ul>
 
             <!-- Bouton du panier -->
             <a href="#" class="btn btn-primary">
-                <i class="bi bi-cart-fill"></i> Panier
+                <i class="bi bi-cart-fill"></i> Panier     
+            </a>
+
+            <a href="backoffice.php" class="btn btn-primary ms-2">
+                <i class="bi bi-cart-fill"></i> Back Office     
             </a>
 
             <a href="logout.php" class="btn btn-danger ms-2">
