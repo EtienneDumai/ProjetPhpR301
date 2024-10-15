@@ -14,7 +14,8 @@
 <?php
 session_start();
 $_SESSION['connexionOk'] = false;
-echo "<div class ='container' ><form method = 'post'>
+echo "
+    <div class ='container' ><form method = 'post'>
     <input type='text' name='login' placeholder='login' required='required'>
     <input type='password' name='password' placeholder='password' required='required'>
     <button type='submit' name='Connect' class = 'btn btn-dark'>Connexion</button>
