@@ -19,23 +19,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $prix = floatval($_POST['prix']);
     $quantite = intval($_POST['quantite']);
 
-    // Définir le chemin de l'image
-    $imageFileName = $nom . '.jpg'; // Nom de l'image
-    $imagePath = "img/$imageFileName"; 
-    $tmpPath = $_FILES['image']['tmp_name']; 
+    // Vérification du fichier image
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+        $tmpPath = $_FILES['image']['tmp_name'];
+        $imageType = mime_content_type($tmpPath); // Récupère le type MIME
 
-    // Déplacer l'image téléchargée dans le dossier /img
-    if (move_uploaded_file($tmpPath, $imagePath)) {
-        // L'image a été déplacée avec succès
+        // Vérifie si le fichier est bien une image JPEG
+        if ($imageType === 'image/jpeg' || $imageType === 'image/jpg') {
+            // Définir le chemin de l'image
+            $imageFileName = $nom . '.jpg'; // Nom de l'image
+            $imagePath = "img/$imageFileName"; 
+
+            // Déplacer l'image téléchargée dans le dossier /img
+            if (move_uploaded_file($tmpPath, $imagePath)) {
+                // L'image a été déplacée avec succès
+            } else {
+                die('Erreur lors du téléchargement de l\'image.');
+            }
+
+            // Insérer le produit avec le chemin de l'image
+            ajout($nom, $description, $categorie, $prix, $quantite, $imagePath, $conn);
+
+            // Redirige avec un message de succès
+            header('Location: ajout.php?add=success');
+            exit();
+        } else {
+            header('Location: ajout.php?add=errorFormat');            
+        }
     } else {
-        die('Erreur lors du téléchargement de l\'image.');
+        header('Location: ajout.php?add=error');
     }
-
-    var_dump($_POST);
-    // Insérer le produit avec le chemin de l'image
-    ajout($nom, $description, $categorie, $prix, $quantite, $imagePath, $conn);
-
-    // Redirige avec un message de succès
-    header('Location: ajout.php?add=success');
-    exit();
 }
+?>

@@ -1,5 +1,13 @@
 <?php
 include 'BD/connexion.php'; // Inclusion du fichier de connexion à la base de données
+session_start(); // Démarre la session pour pouvoir vérifier la variable de session
+
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
+    // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
+    header('Location: login.php');
+    exit; // Stoppe l'exécution du script pour s'assurer que la redirection se fait bien
+}
 
 // Récupérer l'ID du produit depuis l'URL
 if (isset($_GET['id'])) {

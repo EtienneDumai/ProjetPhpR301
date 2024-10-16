@@ -57,6 +57,10 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
             <div class="alert alert-danger text-center">
                 Erreur lors de l'ajout du produit.
             </div>
+            <?php elseif (isset($_GET['add']) && $_GET['add'] == 'errorFormat'): ?>
+            <div class="alert alert-danger text-center">
+                Erreur lors de l'ajout du produit, l'image n'est pas au format .jpg.
+            </div>
         <?php endif; ?>
 
         <form action="ajoutArticle.php" method="POST" class="mx-auto" style="max-width: 600px;"

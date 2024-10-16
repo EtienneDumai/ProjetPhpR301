@@ -12,8 +12,15 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
     exit; // Stoppe l'exécution du script pour s'assurer que la redirection se fait bien
 }
 
-?>
 
+
+?>
+<?php if (isset($_GET['add']) && $_GET['add'] == 'successPayment'): ?>
+            <div class="alert alert-success text-center">
+                Paiement réussi !
+            </div>
+
+<?php endif ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
