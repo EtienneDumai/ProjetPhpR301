@@ -110,11 +110,14 @@ if (!isset($_SESSION['panier'])) {
 
     <?php
     // Ajoute un element au panier si le bouton de la carte du produit à été cliqué
-    while ($drogue = $resultat->fetch_assoc()) {
 
-        // Vérifie si le bouton correspondant à ce produit a été cliqué
-        if (isset($_POST['ajouterAuPanier'])) {
 
+    // Vérifie si le bouton correspondant à ce produit a été cliqué
+    if (isset($_POST['ajouterAuPanier'])) {
+        $id = $drogue['p_id'] ;
+        $sql = "'SELECT nom FROM produits WHERE p_id ='  .$id ";
+        $resultat = $conn->query($sql);
+        while ($drogue = $resultat->fetch_assoc()) {
             // Ajoute le produit au panier
             $produit_existe = false;
             if ($produit_existe) {
