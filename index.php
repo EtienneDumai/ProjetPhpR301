@@ -17,9 +17,6 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
 if (!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = array();
 }
-if(!isset($_SESSION['dernierId'])){
-    $_SESSION['dernierId'] = 0;
-}
 var_dump($_SESSION['panier']);
 
 ?>
@@ -130,34 +127,26 @@ function trouverIndex($panier, $articleid) {
 if (isset($_POST['article_id'])) {
 
     $article_id = (int)$_POST['article_id'];
-    if ($_SESSION['dernierId'] != $article_id) {
-        if ($article_id > 0) {
-            // Initialisation du panier si vide
-            if (!isset($_SESSION['panier'])) {
-                $_SESSION['panier'] = [];
-            }
-    
-            // Trouve l'index de l'article dans le panier
-            $article_index = trouverIndex($_SESSION['panier'], $article_id);
-    
-            if ($article_index !== false) {
-                // Si l'article existe, on augmente sa quantité
-                $_SESSION['panier'][$article_index]['quantite'] += 1;
-            } else {
-                // Sinon, on ajoute un nouvel article au panier
-                $_SESSION['panier'][] = [
-                    'id' => $article_id,
-                    'quantite' => 1
-                ];
-            }
+    if ($article_id > 0) {
+        // Initialisation du panier si vide
+        if (!isset($_SESSION['panier'])) {
+            $_SESSION['panier'] = [];
         }
-        $_SESSION['panier'][$_SESSION['dernierId']]['quantite'] -= 1;
-        
+
+        // Trouve l'index de l'article dans le panier
+        $article_index = trouverIndex($_SESSION['panier'], $article_id);
+        var_dump($article_index);
+        if ($article_index != false) {
+            // Si l'article existe, on augmente sa quantité
+            $_SESSION['panier'][$article_index]['quantite'] += 1;
+        } else {
+            // Sinon, on ajoute un nouvel article au panier
+            $_SESSION['panier'][] = [
+                'id' => $article_id,
+                'quantite' => 1
+            ];
+        }
     }
-    else {
-        $_SESSION['dernierId'] = $article_id;
-    }
-    
 }
 ?>
 
