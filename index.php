@@ -12,11 +12,15 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
     header('Location: login.php');
     exit; // Stoppe l'exécution du script pour s'assurer que la redirection se fait bien
 }
+//delete du panier 
+
 if (!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = array();
 }
-
-
+if(!isset($_SESSION['dernierId'])){
+    $_SESSION['dernierId'] = 0;
+}
+var_dump($_SESSION['panier']);
 
 ?>
 
@@ -97,9 +101,8 @@ if (!isset($_SESSION['panier'])) {
                         </div>
                         <!-- Footer de la carte avec un bouton -->
                         <div class="card-footer bg-transparent border-0 text-center">
-                            <form method="POST">
-                                <input type="hidden" name="<?php echo htmlspecialchars($drogue['p_id']); ?>">
-                                <input type="submit" href="#" class="btn btn-primary w-100" name="ajouterAuPanier" value="Ajouter au panier">
+                            <form method="POST" action="index.php">
+                                <button type="submit" class="btn btn-primary" name="article_id" value="<?= $drogue['p_id'] ?>">Ajouter au panier</button>
                             </form>
                         </div>
                     </div>
@@ -113,35 +116,52 @@ if (!isset($_SESSION['panier'])) {
 
 
     // Vérifie si le bouton correspondant à ce produit a été cliqué
-    if (isset($_POST['ajouterAuPanier'])) {
-        $id = $drogue['p_id'] ;
-        $sql = "'SELECT nom FROM produits WHERE p_id ='  .$id ";
-        $resultat = $conn->query($sql);
-        while ($drogue = $resultat->fetch_assoc()) {
-            // Ajoute le produit au panier
-            $produit_existe = false;
-            if ($produit_existe) {
-                foreach ($_SESSION['panier'] as &$produit) {
-                    if ($_POST[$drogue['nom']] === $drogue['nom']) {
-                        // Si le produit existe déjà dans le panier, on incrémente la quantité
-                        $_SESSION['panier']['quantite'] += 1;
-                        $produit_existe = true;
-                        break;
-                    }
-                }
-            }
-
-
-            if (!$produit_existe) {
-                // Si le produit n'existe pas dans le panier, on l'ajoute
-                $_SESSION['panier'][] = array(
-                    'nom' => $_POST[$drogue['nom']],
-                    'quantite' => 1 // Initialisation de la quantité à 1
-                );
-            }
+// Fonction pour trouver l'index d'un article dans le panier
+function trouverIndex($panier, $articleid) {
+    foreach ($panier as $index => $item) {
+        if ($item['id'] == $articleid) {
+            return $index;
         }
     }
-    ?>
+    return false;
+}
+
+// Vérifie si le bouton correspondant à ce produit a été cliqué
+if (isset($_POST['article_id'])) {
+
+    $article_id = (int)$_POST['article_id'];
+    if ($_SESSION['dernierId'] != $article_id) {
+        if ($article_id > 0) {
+            // Initialisation du panier si vide
+            if (!isset($_SESSION['panier'])) {
+                $_SESSION['panier'] = [];
+            }
+    
+            // Trouve l'index de l'article dans le panier
+            $article_index = trouverIndex($_SESSION['panier'], $article_id);
+    
+            if ($article_index !== false) {
+                // Si l'article existe, on augmente sa quantité
+                $_SESSION['panier'][$article_index]['quantite'] += 1;
+            } else {
+                // Sinon, on ajoute un nouvel article au panier
+                $_SESSION['panier'][] = [
+                    'id' => $article_id,
+                    'quantite' => 1
+                ];
+            }
+        }
+        $_SESSION['panier'][$_SESSION['dernierId']]['quantite'] -= 1;
+        
+    }
+    else {
+        $_SESSION['dernierId'] = $article_id;
+    }
+    
+}
+?>
+
+
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
