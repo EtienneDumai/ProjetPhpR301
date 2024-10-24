@@ -5,6 +5,7 @@ include 'vignette.php';
 $sql = "SELECT p_id, nom, prix, chemin_image FROM produits";
 $resultat = $conn->query($sql);
 session_start();
+$_SESSION['prixTotal'] = 0;
 ?>
 
 <!DOCTYPE html>
@@ -86,9 +87,21 @@ session_start();
                         <h5 class="card-title">'.$drogue['nom'].'</h5>
                         <p>Nombre commandés : '.$produit['quantite'].'</p>
                     </div></div></div>';
+                    $_SESSION['prixTotal'] += $drogue['prix'] * $produit['quantite'];
             }
         }
     }
+        
+        ?>
+        
+        </div>
+        <?php
+        echo '<div class="col-12 mt-4">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+            <h5 class="card-title">Prix total</h5>
+            <p class="card-text">'.$_SESSION['prixTotal'].' €</p>
+            </div></div></div>';
         ?>
     </div>
 </div>
