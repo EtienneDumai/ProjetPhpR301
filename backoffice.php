@@ -41,7 +41,7 @@ if (isset($_GET['delete']) && $_GET['delete'] == 'success'): ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>Back office</title>
+    <title>Stup - Back office</title>
 </head>
 
 <body>

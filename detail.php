@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails du produit</title>
+    <title><?php echo htmlspecialchars($produit['nom']);?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -60,10 +60,6 @@ if (isset($_GET['id'])) {
             <!-- Bouton du panier -->
             <a href="#" class="btn btn-primary">
                 <i class="bi bi-cart-fill"></i> Panier     
-            </a>
-
-            <a href="backoffice.php" class="btn btn-primary ms-2">
-                <i class="bi bi-cart-fill"></i> Back Office     
             </a>
 
             <a href="logout.php" class="btn btn-danger ms-2">

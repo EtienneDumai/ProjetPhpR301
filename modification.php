@@ -19,10 +19,13 @@ if (isset($_GET['p_id'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = $_POST['nom'];
     $prix = $_POST['prix'];
-    $chemin_image = $_POST['chemin_image']; // Par exemple si tu veux aussi modifier l'image
+    $chemin_image = $_POST['chemin_image'];
+    $categorie = $_POST['categorie'];
+    $description = $_POST['description'];
+    $quantite = intval($_POST['quantite']); // Pour éviter toute injection malveillante dans ce champ numérique
 
     // Mettre à jour le produit dans la base de données
-    $sql = "UPDATE produits SET nom='$nom', prix='$prix', chemin_image='$chemin_image' WHERE p_id=$p_id";
+    $sql = "UPDATE produits SET nom='$nom', prix='$prix', chemin_image='$chemin_image', categorie='$categorie', description='$description', quantite=$quantite WHERE p_id=$p_id";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: backoffice.php?update=success");
@@ -57,9 +60,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="chemin_image" class="form-label">Chemin de l'image</label>
                 <input type="text" class="form-control" id="chemin_image" name="chemin_image" value="<?php echo htmlspecialchars($produit['chemin_image']); ?>" required>
             </div>
-            <button type="submit" class="btn btn-primary  mb-3">Enregistrer les modifications</button>
+            <div class="mb-3">
+                <label for="categorie" class="form-label">Catégorie</label>
+                <input type="text" class="form-control" id="categorie" name="categorie" value="<?php echo htmlspecialchars($produit['categorie']); ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4" required><?php echo htmlspecialchars($produit['description']); ?></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="quantite" class="form-label">Quantité disponible</label>
+                <input type="number" class="form-control" id="quantite" name="quantite" value="<?php echo htmlspecialchars($produit['quantite']); ?>" required>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Enregistrer les modifications</button>
         </form>
-        <a href="backoffice.php" class="btn btn-primary"> Annuler</a>
+        <a href="backoffice.php" class="btn btn-primary">Annuler</a>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
