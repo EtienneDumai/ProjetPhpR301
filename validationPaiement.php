@@ -20,10 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérification du numéro de carte (16 chiffres et dernier chiffre identique au premier)
     if (strlen($numeroCarte) == 16 && ctype_digit($numeroCarte)) {
         if (!($numeroCarte[0] == $numeroCarte[15])) {
-          header('Location:paiement.php?add=errorValCarte')  ;
+          header('Location:paiement.php?add=errorValCarte');
+          exit();
         }
     } else {
         header('Location:paiement.php?add=errorLenCarte');
+        exit();
     } 
 
     // Vérification de la date de validité (supérieure à la date du jour + 3 mois)

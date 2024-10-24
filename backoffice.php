@@ -7,8 +7,12 @@ $resultat = $conn->query($sql);
 session_start(); // Démarre la session pour pouvoir vérifier la variable de session
 
 // Vérifie si l'utilisateur est connecté
-if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
+if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true || $_SESSION['role'] !== 'admin') {
     // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
+    if ($_SESSION['role'] == 'user'){
+        header('Location: index.php');
+        exit;
+    }
     header('Location: login.php');
     exit; // Stoppe l'exécution du script pour s'assurer que la redirection se fait bien
 }
@@ -20,6 +24,12 @@ if (isset($_GET['delete']) && $_GET['delete'] == 'success'): ?>
 <?php elseif (isset($_GET['delete']) && $_GET['delete'] == 'error'): ?>
     <div class="alert alert-danger text-center">
         Erreur lors de la suppression du produit.
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_GET['update']) && $_GET['update'] == 'success'): ?>
+    <div class="alert alert-success text-center">
+        Modifications enregistrés !
     </div>
 <?php endif; ?>
 
@@ -69,7 +79,7 @@ if (isset($_GET['delete']) && $_GET['delete'] == 'success'): ?>
 
 
     <div class="container py-5">
-         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center align-items-center"
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center align-items-center"
             style="min-height: 100vh;">
             <?php while ($drogue = $resultat->fetch_assoc()): ?>
                 <?php
@@ -96,26 +106,34 @@ if (isset($_GET['delete']) && $_GET['delete'] == 'success'): ?>
                         <!-- Footer de la carte avec un bouton -->
 
                         <div class="card-footer bg-transparent border-0 text-center">
-                            <form action="suppression.php" method="POST"
-                                onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');">
-                                <input type="hidden" name="p_id" value="<?php echo $drogue['p_id']; ?>">
-                                <button type="submit" class="btn btn-danger w-100">Supprimer</button>
-                            </form>
-                        </div>
+                            <!-- Bouton pour modifier le produit -->
+                            <a href="modification.php?p_id=<?php echo $drogue['p_id']; ?>"
+                                class="btn btn-warning w-100 mb-2">Modifier</a>
+                        
+                        <!-- Bouton pour supprimer le produit -->
+                        <form action="suppression.php" method="POST"
+                            onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');">
+                            <input type="hidden" name="p_id" value="<?php echo $drogue['p_id']; ?>">
+                            <button type="submit" class="btn btn-danger w-100 ">Supprimer</button>
+                        </form>
+                    </div>
+
+
+
 
 
                     </div>
                 </div>
             <?php endwhile; ?>
+        </div>
     </div>
-    </div>
-    <footer class =" bg-light"> 
-    <div class="container py-5">
-    <!-- Bouton pour ajouter un produit -->
-    <div class="text-center mb-4">
-        <a href="ajout.php" class="btn btn-primary">Ajouter un produit</a>
-    </div>
-    </footer>      
+    <footer class=" bg-light">
+        <div class="container py-5">
+            <!-- Bouton pour ajouter un produit -->
+            <div class="text-center mb-4">
+                <a href="ajout.php" class="btn btn-primary">Ajouter un produit</a>
+            </div>
+    </footer>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

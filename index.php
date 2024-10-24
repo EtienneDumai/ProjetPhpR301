@@ -6,7 +6,7 @@ $resultat = $conn->query($sql);
 session_start(); // Démarre la session pour pouvoir vérifier la variable de session
 
 // Vérifie si l'utilisateur est connecté
-if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
+if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true || $_SESSION['role'] !== 'user') {
     // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
     header('Location: login.php');
     exit; // Stoppe l'exécution du script pour s'assurer que la redirection se fait bien
@@ -52,10 +52,6 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
             <!-- Bouton du panier -->
             <a href="#" class="btn btn-primary">
                 <i class="bi bi-cart-fill"></i> Panier     
-            </a>
-
-            <a href="backoffice.php" class="btn btn-primary ms-2">
-                <i class="bi bi-cart-fill"></i> Back Office     
             </a>
 
             <a href="logout.php" class="btn btn-danger ms-2">

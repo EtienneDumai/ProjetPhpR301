@@ -31,14 +31,31 @@
                     <?php
                     session_start();
                     $_SESSION['connexionOk'] = false;
-                    
+
+                    // Vérifier si le formulaire a été soumis
                     if (isset($_POST['Connect'])) {
-                        if ($_POST['login'] == 'admin' && $_POST['password'] == 'admin') {
-                            echo "<div class='alert alert-success mt-3' role='alert'>Connexion réussie</div>";
+                        $login = $_POST['login'];
+                        $password = $_POST['password'];
+
+                        // Conditions pour admin
+                        if ($login == 'admin' && $password == 'admin') {
                             $_SESSION['connexionOk'] = true;
-                            header('Location: index.php');
-                        } else {
-                            echo "<div class='alert alert-danger mt-3' role='alert'>Connexion échouée</div>";
+                            $_SESSION['role'] = 'admin'; // Rôle admin
+                            echo "<div class='alert alert-success mt-3' role='alert'>Connexion réussie en tant qu'administrateur</div>";
+                            header('Location: backoffice.php'); // Redirection admin
+                            exit();
+                        }
+                        // Conditions pour utilisateur standard
+                        elseif ($login == 'user' && $password == 'user') {
+                            $_SESSION['connexionOk'] = true;
+                            $_SESSION['role'] = 'user'; // Rôle utilisateur
+                            echo "<div class='alert alert-success mt-3' role='alert'>Connexion réussie en tant qu'utilisateur</div>";
+                            header('Location: index.php'); // Redirection utilisateur
+                            exit();
+                        }
+                        // Si les identifiants ne correspondent pas
+                        else {
+                            echo "<div class='alert alert-danger mt-3' role='alert'>Connexion échouée. Login ou mot de passe incorrect</div>";
                         }
                     }
                     ?>

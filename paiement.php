@@ -3,7 +3,7 @@ include 'BD/connexion.php'; // Inclusion du fichier de connexion à la base de d
 session_start(); // Démarre la session pour pouvoir vérifier la variable de session
 
 // Vérifie si l'utilisateur est connecté
-if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
+if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true || $_SESSION['role'] !== 'user') {
     // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
     header('Location: login.php');
     exit; // Stoppe l'exécution du script pour s'assurer que la redirection se fait bien
