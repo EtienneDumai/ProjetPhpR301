@@ -44,7 +44,7 @@ if (!isset($_SESSION['panier'])) {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- Logo ou titre -->
-            <a class="navbar-brand" href="#">Stup.net</a>
+            <a class="navbar-brand" href="index.php">Stup.net</a>
 
             <!-- Bouton pour mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@ if (!isset($_SESSION['panier'])) {
                 </ul>
 
                 <!-- Bouton du panier -->
-                <a href="#" class="btn btn-primary">
+                <a href="panier.php" class="btn btn-primary">
                     <i class="bi bi-cart-fill"></i> Panier
                 </a>
                 <!-- Bouton de déconnexion -->
