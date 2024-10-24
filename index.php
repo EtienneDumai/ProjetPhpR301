@@ -28,6 +28,7 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true || $_S
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <title>Stup</title>
+
 </head>
 <body>
 

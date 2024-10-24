@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <title>Connexion</title>
+
+    <style>
+        /* CSS pour définir l'image d'arrière-plan */
+        body {
+            background-image: url('img/background.jpg');
+            background-size: cover; /* Ajuste l'image pour couvrir tout l'écran */
+            background-position: center; /* Centre l'image */
+            background-repeat: no-repeat; /* Empêche la répétition de l'image */
+            height: 100vh; /* Définit la hauteur à 100% de la fenêtre */
+        }
+
+        /* Optionnel : Ajout d'une légère couleur de fond transparente sur le formulaire */
+        .card {
+            background-color: rgba(255, 255, 255, 0.85); /* Transparence sur le fond de la carte */
+        }
+    </style>
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100 bg-light">
     
@@ -18,7 +34,7 @@
                     <form method="post">
                         <div class="mb-3">
                             <label for="login" class="form-label">Login</label>
-                            <input type="text" class="form-control" id="login" name="login" placeholder="Entrez votre login" required>
+                            <input type="text" class="form-control" id="login" name="login" placeholder="Entrez votre identifiant" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Mot de passe</label>
