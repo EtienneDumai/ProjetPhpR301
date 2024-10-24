@@ -27,7 +27,7 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true || $_S
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>Stup</title>
+    <title>Stup !</title>
 
 </head>
 <body>
@@ -51,7 +51,7 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true || $_S
             </ul>
 
             <!-- Bouton du panier -->
-            <a href="#" class="btn btn-primary">
+            <a href="#" class="btn btn-success">
                 <i class="bi bi-cart-fill"></i> Panier     
             </a>
 
@@ -96,7 +96,7 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true || $_S
 
                     <!-- Footer de la carte avec un bouton -->
                     <div class="card-footer bg-transparent border-0 text-center">
-                        <a href="#" class="btn btn-primary w-100" onclick="event.stopPropagation();">Ajouter au panier</a>
+                        <a href="#" class="btn btn-success w-100" onclick="event.stopPropagation();">Ajouter au panier</a>
                     </div>
                 </div>
             </div>

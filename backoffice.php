@@ -48,34 +48,27 @@ if (isset($_GET['delete']) && $_GET['delete'] == 'success'): ?>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <!-- Logo ou titre -->
-            <a class="navbar-brand" href="#">Stup.net</a>
+    <div class="container-fluid">
+        <!-- Logo ou titre -->
+        <a class="navbar-brand" href="#">Stup.net</a>
 
-            <!-- Bouton pour mobile -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- Bouton pour mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Liens de navigation -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Produits</a>
-                    </li>
-                </ul>
-
+        <!-- Liens de navigation -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="ms-auto"> <!-- Ajout d'un conteneur pour pousser à droite -->
                 <a href="logout.php" class="btn btn-danger ms-2">
                     <i class="bi bi-cart-fill"></i> Déconnexion
                 </a>
-
-
             </div>
-
-
         </div>
-    </nav>
+    </div>
+</nav>
+
 
 
     <div class="container py-5">
@@ -131,7 +124,7 @@ if (isset($_GET['delete']) && $_GET['delete'] == 'success'): ?>
         <div class="container py-5">
             <!-- Bouton pour ajouter un produit -->
             <div class="text-center mb-4">
-                <a href="ajout.php" class="btn btn-primary">Ajouter un produit</a>
+                <a href="ajout.php" class="btn btn-success">Ajouter un produit</a>
             </div>
     </footer>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

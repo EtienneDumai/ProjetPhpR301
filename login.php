@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>Connexion</title>
+    <title>Stup !</title>
 
     <style>
         /* CSS pour définir l'image d'arrière-plan */
@@ -45,7 +45,7 @@
                     </form>
 
                     <div class="text-center mt-3">
-                        <a href="creerCompte.php" class="btn btn-link">Créer un compte</a>
+                        <a href="creerCompte.php" class="btn btn-link">Rejoignez nous !</a>
                     </div>
 
                     <?php

@@ -17,7 +17,7 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>Ajout d'un produit</title>
+    <title>Stup !</title>
 </head>
 
 <body>
@@ -31,12 +31,7 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Produits</a>
-                    </li>
-                </ul>
-                <a href="backoffice.php" class="btn btn-primary ms-2">
+                <a href="backoffice.php" class="btn btn-success ms-2">
                     <i class="bi bi-cart-fill"></i> Back Office
                 </a>
                 <a href="logout.php" class="btn btn-danger ms-2">Déconnexion</a>

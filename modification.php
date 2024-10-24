@@ -42,8 +42,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>Modifier le produit</title>
+    <title>Modifier <?php echo htmlspecialchars($produit['nom']); ?></title>
 </head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Logo ou titre -->
+        <a class="navbar-brand" href="#">Stup.net</a>
+
+        <!-- Bouton pour mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Liens de navigation -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="ms-auto"> <!-- Ajout d'un conteneur pour pousser à droite -->
+                <a href="logout.php" class="btn btn-danger ms-2">
+                    <i class="bi bi-cart-fill"></i> Déconnexion
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
 <body>
     <div class="container py-5">
         <h1 class="text-center mb-5">Modifier le produit</h1>
@@ -72,9 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="quantite" class="form-label">Quantité disponible</label>
                 <input type="number" class="form-control" id="quantite" name="quantite" value="<?php echo htmlspecialchars($produit['quantite']); ?>" required>
             </div>
-            <button type="submit" class="btn btn-primary mb-3">Enregistrer les modifications</button>
+            <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success mb-3">Enregistrer les modifications</button>
+            </div>
         </form>
-        <a href="backoffice.php" class="btn btn-primary">Annuler</a>
+        <div class="d-flex justify-content-center">
+        <a href="backoffice.php" class="btn btn-success">Annuler</a>
+        </div> 
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>

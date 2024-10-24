@@ -58,7 +58,7 @@ if (isset($_GET['id'])) {
             </ul>
 
             <!-- Bouton du panier -->
-            <a href="#" class="btn btn-primary">
+            <a href="#" class="btn btn-success">
                 <i class="bi bi-cart-fill"></i> Panier     
             </a>
 

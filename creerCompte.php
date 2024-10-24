@@ -41,7 +41,7 @@
                             <input type="password" class="form-control" id="password" name="password" placeholder="Choisissez un mot de passe" required>
                         </div>
                         <div class="d-grid gap-2">
-                            <button type="submit" name="CreerCompte" class="btn btn-dark">Créer le compte</button>
+                            <button type="submit" name="CreerCompte" class="btn btn-dark">Créer mon compte</button>
                         </div>
                     </form>
 
@@ -56,7 +56,8 @@
 
                         // Appeler la fonction de création d'utilisateur
                         if (creerUtilisateur($pseudo, $motDePasse)) {
-                            header('location : login.php');
+                            header('location: login.php');
+                            exit;
                         } else {
                             echo "<div class='alert alert-danger mt-3' role='alert'>Erreur lors de la création du compte. L'identifiant existe peut-être déjà.</div>";
                         }

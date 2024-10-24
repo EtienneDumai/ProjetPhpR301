@@ -9,6 +9,11 @@ CREATE TABLE Produits (
     date_Creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE login (
+    pseudo VARCHAR(50) NOT NULL PRIMARY KEY,
+    mdp VARCHAR(255) NOT NULL
+);
+
 INSERT INTO Produits (nom, description, categorie, prix, quantite, chemin_image)
 VALUES 
 ('Cannabis Sativa', 'Sativa de haute qualité, connue pour ses effets énergisants', 'Cannabis', 30.00, 100, 'img/cannabissativa.jpg'),
@@ -21,3 +26,6 @@ VALUES
 ('Champignons Magiques', 'Champignons psilocybine séchés, prêts à être consommés', 'Psychédéliques', 45.00, 75, 'img/champi.jpg'),
 ('Kétamine', 'Kétamine de qualité médicale, utilisée à des fins récréatives pour ses effets dissociatifs', 'Dissociatifs', 85.00, 40, 'img/ketamine.jpg'),
 ('Xanax', 'Xanax (alprazolam) de qualité pharmaceutique, populaire pour ses effets calmants', 'Benzodiazépines', 10.00, 500, 'img/xanax.jpg');
+
+INSERT INTO login (pseudo, mdp)
+VALUES ('admin', 'admin'), ('user', 'user');
