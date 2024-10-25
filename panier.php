@@ -53,6 +53,13 @@ $_SESSION['prixTotal'] = 0;
     </nav>
     <div class="container py-5">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center align-items-center" style="min-height: 100vh;">
+    <?php
+        if (isset($_POST['viderPanier'])) {
+            unset($_SESSION['panier']);
+            $_SESSION['prixTotal'] = 0;
+            $_SESSION['panier'] = array();
+        }
+        ?>
         <?php 
         // Fonction pour supprimer les doublons et additionner les quantités dans un tableau de tableaux associatifs
         function supprimerDoublonsEtAdditionnerQuantites(array $tableauAssoc) {
@@ -103,6 +110,15 @@ $_SESSION['prixTotal'] = 0;
             <p class="card-text">'.$_SESSION['prixTotal'].' €</p>
             </div></div></div>';
         ?>
+        <div class="d-flex justify-content-center mt-4">
+            <form method="post" action="panier.php">
+                <button type="submit" class="btn btn-danger" name="viderPanier">Vider Panier</button>
+                <button type="submit" class="btn btn-primary ms-2" name="payer">Payer</button>
+            </form>
+            
+        </div>
+
+        
     </div>
 </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

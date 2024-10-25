@@ -55,14 +55,15 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true || $_S
                 </ul>
 
                 <!-- Bouton du panier -->
-                <a href="#" class="btn btn-primary">
+                <a href="panier.php" class="btn btn-primary">
                     <i class="bi bi-cart-fill"></i> Panier
                 </a>
-
+                <?php 
+                if ($_SESSION['role'] == 'admin'){echo'
                 <a href="backoffice.php" class="btn btn-primary ms-2">
                     <i class="bi bi-cart-fill"></i> Back Office
-                </a>
-
+                </a>';}
+                ?>
                 <a href="logout.php" class="btn btn-danger ms-2">
                     <i class="bi bi-cart-fill"></i> Déconnexion
                 </a>
