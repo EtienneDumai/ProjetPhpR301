@@ -6,6 +6,11 @@ $sql = "SELECT p_id, nom, prix, chemin_image FROM produits";
 $resultat = $conn->query($sql);
 session_start();
 $_SESSION['prixTotal'] = 0;
+if (isset($_POST['payer'])) {
+    header('Location: paiement.php');
+}
+if(isset($_POST['acheter'])) {
+    header('Location: index.php');}
 ?>
 
 <!DOCTYPE html>
@@ -82,22 +87,27 @@ $_SESSION['prixTotal'] = 0;
         $panierClean= array();
         $panierClean = supprimerDoublonsEtAdditionnerQuantites($_SESSION['panier']);
 
-        
-        while ($drogue = $resultat->fetch_assoc()) {
-            foreach($panierClean as $produit) {
-                if ($produit['id'] == $drogue['p_id']) {
-                    echo '
-                    <div class="col d-flex justify-content-center align-items-center">
-                    <div class="card h-100 shadow-sm">
-                    <img src="'.$drogue['chemin_image'].'" class="card-img-top" alt="'.$drogue['nom'].'">
-                    <div class="card-body">
-                        <h5 class="card-title">'.$drogue['nom'].'</h5>
-                        <p>Nombre commandés : '.$produit['quantite'].'</p>
-                    </div></div></div>';
-                    $_SESSION['prixTotal'] += $drogue['prix'] * $produit['quantite'];
+        if (!empty($panierClean)) {
+            while ($drogue = $resultat->fetch_assoc()) {
+                foreach($panierClean as $produit) {
+                    if ($produit['id'] == $drogue['p_id']) {
+                        echo '
+                        <div class="col d-flex justify-content-center align-items-center">
+                        <div class="card h-100 shadow-sm">
+                        <img src="'.$drogue['chemin_image'].'" class="card-img-top" alt="'.$drogue['nom'].'">
+                        <div class="card-body">
+                            <h5 class="card-title">'.$drogue['nom'].'</h5>
+                            <p>Nombre commandés : '.$produit['quantite'].'</p>
+                        </div></div></div>';
+                        $_SESSION['prixTotal'] += $drogue['prix'] * $produit['quantite'];
+                }
             }
         }
-    }
+        }
+        else {
+            echo '<h3>Le panier est vide</h3>';
+        }
+        
         
         ?>
         
@@ -112,12 +122,15 @@ $_SESSION['prixTotal'] = 0;
         ?>
         <div class="d-flex justify-content-center mt-4">
             <form method="post" action="panier.php">
-                <button type="submit" class="btn btn-danger" name="viderPanier">Vider Panier</button>
-                <button type="submit" class="btn btn-primary ms-2" name="payer">Payer</button>
+                
+                <?php if($_SESSION['prixTotal'] > 0) {echo '<button type="submit" class="btn btn-danger" name="viderPanier">Vider Panier</button>
+                <button type="submit" class="btn btn-primary ms-2" name="payer">Payer</button>';}
+                else {
+                    echo '<button type="submit" class="btn btn-primary ms-2" name="acheter">Aller acheter</button>';
+                } ?>
+                
             </form>
-            
         </div>
-
         
     </div>
 </div>
