@@ -85,7 +85,7 @@ if (!isset($_SESSION['connexionOk']) || $_SESSION['connexionOk'] !== true) {
                 <input type="file" class="form-control" id="image" name="image" accept="image/jpeg" required>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Ajouter le produit</button>
+            <button type="submit" class="btn btn-success w-100">Ajouter le produit</button>
         </form>
     </div>
 

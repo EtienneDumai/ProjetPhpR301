@@ -101,8 +101,10 @@ if (isset($_GET['id'])) {
                             </p>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-center">
-                            <a href="panier.php?id=<?php echo $produit['p_id']; ?>" class="btn btn-success w-100">Ajouter au panier</a>
-                        </div>
+                        <form method="POST" action="index.php">
+                                <button type="submit" class="btn btn-success w-100" name="article_id" value="<?= $produit['p_id'] ?>">Ajouter au panier</button>
+                            </form>
+                            </div>
                     </div>
                 </div>
             </div>

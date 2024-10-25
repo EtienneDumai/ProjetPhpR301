@@ -45,7 +45,7 @@ if (isset($_POST['acheter'])) {
                 </ul>
 
                 <!-- Bouton du panier -->
-                <a href="panier.php" class="btn btn-primary">
+                <a href="panier.php" class="btn btn-success">
                     <i class="bi bi-cart-fill"></i> Panier
                 </a>
                 <!-- Bouton de déconnexion -->
@@ -128,9 +128,9 @@ if (isset($_POST['acheter'])) {
 
                 <?php if ($_SESSION['prixTotal'] > 0) {
                     echo '<button type="submit" class="btn btn-danger" name="viderPanier">Vider Panier</button>
-                <button type="submit" class="btn btn-primary ms-2" name="payer">Payer</button>';
+                <button type="submit" class="btn btn-success ms-2" name="payer">Payer</button>';
                 } else {
-                    echo '<button type="submit" class="btn btn-primary ms-2" name="acheter">Aller acheter</button>';
+                    echo '<button type="submit" class="btn btn-success ms-2" name="acheter">Aller acheter</button>';
                 } ?>
             </form>
         </div>

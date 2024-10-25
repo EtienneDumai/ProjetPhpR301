@@ -60,7 +60,7 @@ if (!isset($_SESSION['panier'])) {
                 </ul>
 
                 <!-- Bouton du panier -->
-                <a href="panier.php" class="btn btn-primary">
+                <a href="panier.php" class="btn btn-success">
                     <i class="bi bi-cart-fill"></i> Panier
                 </a>
                 <!-- Bouton de déconnexion -->
@@ -92,8 +92,8 @@ if (!isset($_SESSION['panier'])) {
 
                 ?>
                 <div class="col d-flex justify-content-center align-items-center">
-                    <div class="card h-100 shadow-sm">
-                        <!-- Image du produit -->
+                <div class="card h-100 shadow-sm position-relative" style="cursor: pointer;" onclick="window.location.href='detail.php?id=<?php echo $drogue['p_id']; ?>'">
+                    <!-- Image du produit -->
                         <img src="<?php echo $dest; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($drogue['nom']); ?>">
 
                         <!-- Corps de la carte avec nom et prix -->
@@ -106,7 +106,7 @@ if (!isset($_SESSION['panier'])) {
                         <!-- Footer de la carte avec un bouton -->
                         <div class="card-footer bg-transparent border-0 text-center">
                             <form method="POST" action="index.php">
-                                <button type="submit" class="btn btn-primary" name="article_id" value="<?= $drogue['p_id'] ?>">Ajouter au panier</button>
+                                <button type="submit" class="btn btn-success " name="article_id" value="<?= $drogue['p_id'] ?>" onclick="event.stopPropagation()";>Ajouter au panier</button>
                             </form>
                         </div>
                     </div>
@@ -151,7 +151,9 @@ if (isset($_POST['article_id'])) {
     }
 }
 ?>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+
 </body>
 
 </html>
