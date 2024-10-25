@@ -116,10 +116,6 @@ if (!isset($_SESSION['panier'])) {
     </div>
 
     <?php
-    // Ajoute un element au panier si le bouton de la carte du produit à été cliqué
-
-
-    // Vérifie si le bouton correspondant à ce produit a été cliqué
 // Fonction pour trouver l'index d'un article dans le panier
 function trouverIndex($panier, $articleid) {
     foreach ($panier as $index => $item) {
@@ -129,7 +125,6 @@ function trouverIndex($panier, $articleid) {
     }
     return false;
 }
-
 // Vérifie si le bouton correspondant à ce produit a été cliqué
 if (isset($_POST['article_id'])) {
 
@@ -156,8 +151,6 @@ if (isset($_POST['article_id'])) {
     }
 }
 ?>
-
-
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
