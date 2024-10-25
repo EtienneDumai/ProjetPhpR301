@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'BD/connexion.php';
 include 'vignette.php';
 
@@ -9,18 +9,21 @@ $_SESSION['prixTotal'] = 0;
 if (isset($_POST['payer'])) {
     header('Location: paiement.php');
 }
-if(isset($_POST['acheter'])) {
-    header('Location: index.php');}
+if (isset($_POST['acheter'])) {
+    header('Location: index.php');
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panier</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,83 +60,83 @@ if(isset($_POST['acheter'])) {
         </div>
     </nav>
     <div class="container py-5">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center align-items-center" style="min-height: 100vh;">
-    <?php
-        if (isset($_POST['viderPanier'])) {
-            unset($_SESSION['panier']);
-            $_SESSION['prixTotal'] = 0;
-            $_SESSION['panier'] = array();
-        }
-        ?>
-        <?php 
-        // Fonction pour supprimer les doublons et additionner les quantités dans un tableau de tableaux associatifs
-        function supprimerDoublonsEtAdditionnerQuantites(array $tableauAssoc) {
-            $tableauSansDoublons = [];
-
-            foreach ($tableauAssoc as $sousTableau) {
-                $cleUnique = $sousTableau['id']; // Utilise l'ID comme clé unique pour identifier les doublons
-        
-                if (isset($tableauSansDoublons[$cleUnique])) {
-                // Si l'élément existe déjà, on additionne la quantité
-                    $tableauSansDoublons[$cleUnique]['quantite'] += $sousTableau['quantite'];
-                } else {
-                    // Si l'élément n'existe pas encore, on l'ajoute
-                    $tableauSansDoublons[$cleUnique] = $sousTableau;
-                }
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center align-items-center" style="min-height: 100vh;">
+            <?php
+            if (isset($_POST['viderPanier'])) {
+                unset($_SESSION['panier']);
+                $_SESSION['prixTotal'] = 0;
+                $_SESSION['panier'] = array();
             }
+            ?>
+            <?php
+            // Fonction pour supprimer les doublons et additionner les quantités dans un tableau de tableaux associatifs
+            function supprimerDoublonsEtAdditionnerQuantites(array $tableauAssoc)
+            {
+                $tableauSansDoublons = [];
 
-            return $tableauSansDoublons;
-        }
-        $panierClean= array();
-        $panierClean = supprimerDoublonsEtAdditionnerQuantites($_SESSION['panier']);
+                foreach ($tableauAssoc as $sousTableau) {
+                    $cleUnique = $sousTableau['id']; // Utilise l'ID comme clé unique pour identifier les doublons
 
-        if (!empty($panierClean)) {
-            while ($drogue = $resultat->fetch_assoc()) {
-                foreach($panierClean as $produit) {
-                    if ($produit['id'] == $drogue['p_id']) {
-                        echo '
+                    if (isset($tableauSansDoublons[$cleUnique])) {
+                        // Si l'élément existe déjà, on additionne la quantité
+                        $tableauSansDoublons[$cleUnique]['quantite'] += $sousTableau['quantite'];
+                    } else {
+                        // Si l'élément n'existe pas encore, on l'ajoute
+                        $tableauSansDoublons[$cleUnique] = $sousTableau;
+                    }
+                }
+
+                return $tableauSansDoublons;
+            }
+            $panierClean = array();
+            $panierClean = supprimerDoublonsEtAdditionnerQuantites($_SESSION['panier']);
+
+            if (!empty($panierClean)) {
+                while ($drogue = $resultat->fetch_assoc()) {
+                    foreach ($panierClean as $produit) {
+                        if ($produit['id'] == $drogue['p_id']) {
+                            echo '
                         <div class="col d-flex justify-content-center align-items-center">
                         <div class="card h-100 shadow-sm">
-                        <img src="'.$drogue['chemin_image'].'" class="card-img-top" alt="'.$drogue['nom'].'">
+                        <img src="' . $drogue['chemin_image'] . '" class="card-img-top" alt="' . $drogue['nom'] . '">
                         <div class="card-body">
-                            <h5 class="card-title">'.$drogue['nom'].'</h5>
-                            <p>Nombre commandés : '.$produit['quantite'].'</p>
+                            <h5 class="card-title">' . $drogue['nom'] . '</h5>
+                            <p>Nombre commandés : ' . $produit['quantite'] . '</p>
                         </div></div></div>';
-                        $_SESSION['prixTotal'] += $drogue['prix'] * $produit['quantite'];
+                            $_SESSION['prixTotal'] += $drogue['prix'] * $produit['quantite'];
+                        }
+                    }
                 }
+            } else {
+                echo '<h3>Le panier est vide</h3>';
             }
-        }
-        }
-        else {
-            echo '<h3>Le panier est vide</h3>';
-        }
-        
-        
-        ?>
-        
+
+
+            ?>
+
         </div>
         <?php
         echo '<div class="col-12 mt-4">
         <div class="card text-center shadow-sm">
             <div class="card-body">
             <h5 class="card-title">Prix total</h5>
-            <p class="card-text">'.$_SESSION['prixTotal'].' €</p>
+            <p class="card-text">' . $_SESSION['prixTotal'] . ' €</p>
             </div></div></div>';
         ?>
         <div class="d-flex justify-content-center mt-4">
             <form method="post" action="panier.php">
-                
-                <?php if($_SESSION['prixTotal'] > 0) {echo '<button type="submit" class="btn btn-danger" name="viderPanier">Vider Panier</button>
-                <button type="submit" class="btn btn-primary ms-2" name="payer">Payer</button>';}
-                else {
+
+                <?php if ($_SESSION['prixTotal'] > 0) {
+                    echo '<button type="submit" class="btn btn-danger" name="viderPanier">Vider Panier</button>
+                <button type="submit" class="btn btn-primary ms-2" name="payer">Payer</button>';
+                } else {
                     echo '<button type="submit" class="btn btn-primary ms-2" name="acheter">Aller acheter</button>';
                 } ?>
-                
             </form>
         </div>
-        
     </div>
-</div>
+    </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
